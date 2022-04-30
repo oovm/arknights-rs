@@ -1,4 +1,5 @@
 mod data;
+use crate::database::Database;
 use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Copy, Clone, Debug)]
@@ -11,11 +12,6 @@ pub struct Story<'a> {
 
 impl<'a> Story<'a> {
     pub fn new(id: &'a str, chapter: &'a str, name: &'a str, code: &'a str) -> Self {
-        Self {
-            id,
-            chapter,
-            name,
-            code,
-        }
+        Self { id, chapter, name, code }
     }
 }

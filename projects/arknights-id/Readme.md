@@ -5,5 +5,7 @@
 
 ## References
 
-- https://github.com/050644zf/ArknightsStoryJson/tree/main/zh_CN
+- StoryID
+
+https://github.com/moushicheng/mirai-cmm/blob/master/mcl/data/arknights-helper/PenguinStats/zones.json
 

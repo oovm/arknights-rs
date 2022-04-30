@@ -1,6 +1,7 @@
+mod chapter_id;
+mod database;
 mod errors;
 mod story_id;
-mod chapter_id;
 
+pub use self::{chapter_id::Chapter, database::Database, story_id::Story};
 pub use errors::{Error, Result};
-pub use self::story_id::Story;
