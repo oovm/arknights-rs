@@ -1,5 +1,5 @@
 [package]
-name = "arknights-data"
+name = "arknights-db"
 publish = false
 version = "0.0.0"
 authors = ["Aster <192607617@qq.com>"]
