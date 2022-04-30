@@ -7,5 +7,4 @@
 
 - StoryID
 
-https://github.com/moushicheng/mirai-cmm/blob/master/mcl/data/arknights-helper/PenguinStats/zones.json
-
+`gamedata/excel/story_review_table.json`
