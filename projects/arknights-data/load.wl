@@ -6,15 +6,6 @@ SetDirectory@NotebookDirectory[]
 
 
 
-config=Import["data/gamedata_const.json","RawJSON"];
-
-
-config["maxLevel"]
-
-
-config["characterExpMap"]
-
-
 mainStory=FileNames["*.json",  "data/gamedata/story/",Infinity];
 
 
