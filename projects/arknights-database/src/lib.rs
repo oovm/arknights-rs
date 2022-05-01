@@ -2,8 +2,8 @@
 #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
 #![doc = include_str!("../Readme.md")]
-#![doc(html_logo_url = "https://img.nga.178.com/attachments/mon_202008/19/-klbw3Q5-e364K1iT1kSe8-e8.png")]
-#![doc(html_favicon_url = "https://img.nga.178.com/attachments/mon_202008/19/-klbw3Q5-e364K1iT1kSe8-e8.png")]
+#![doc(html_logo_url = "https://raw.githubusercontent.com/oovm/arknights-rs/dev/.github/logo/rhodes.png")]
+#![doc(html_favicon_url = "https://raw.githubusercontent.com/oovm/arknights-rs/dev/.github/logo/rhodes.png")]
 
 mod cost;
 mod doctor;
@@ -13,7 +13,7 @@ mod specialization;
 
 pub use self::{
     cost::{LevelUpCost, LevelUpCostDB},
-    doctor::DoctorLevelUpDB,
+    doctor::DoctorLevelDB,
     elite::EliteCost,
     errors::{Error, Result},
 };
