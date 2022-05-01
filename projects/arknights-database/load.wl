@@ -6,101 +6,77 @@ SetDirectory@NotebookDirectory[];
 config = Import["data/gamedata_const.json", "RawJSON"];
 
 
-levels = PadRight[config["maxLevel"], {6, 3}, 1]
+levels = PadRight[config["maxLevel"], {6, 3}, 1];
+expMap = config["characterExpMap"] /. {-1 -> Nothing};
+cashMap = config["characterUpgradeCostMap"] /. {-1 -> Nothing};
+mapping = TemplateApply["\
+#[inline]
+fn map_exp() -> Self {
+    Self {
+        elite0: `1`,
+        elite1: `2`,
+        elite2: `3`,
+    }
+}
+#[inline]
+fn map_cash() -> Self {
+    Self {
+        elite0: `4`,
+        elite1: `5`,
+        elite2: `6`,
+    }
+}
+",
+    Flatten@{asVec /@ expMap, asVec /@ cashMap}
+];
 
 
 asVec[v_] := "vec![" <> StringRiffle[v, ","] <> "]";
 f[{e0_, e1_, e2_}, {index_}] := Block[
     {},
-    TemplateApply["\
+    TemplateApply["
+/// \:5347\:7ea7 1 \:661f\:5e72\:5458\:6240\:9700\:8981\:7684\:7ecf\:9a8c\:503c
 pub fn star`1`_exp() -> Self {
-        Self {
-            elite0: `2`,
-            elite1: `3`,
-            elite2: `4`,
-        }
+    let map = Self::map_exp();
+    Self {
+        elite0: map.elite0.into_iter().take(`2`).collect(),
+        elite1: map.elite0.into_iter().take(`3`).collect(),
+        elite2: map.elite0.into_iter().take(`4`).collect(),
     }
+}
+
+/// \:5347\:7ea7 `1` \:661f\:5e72\:5458\:6240\:9700\:8981\:7684\:9f99\:95e8\:5e01
 pub fn star`1`_cash() -> Self {
-        Self {
-            elite0: `5`,
-            elite1: `6`,
-            elite2: `7`,
-        }
+    let map = Self::map_cash();
+    Self {
+        elite0: map.elite0.into_iter().take(`2`).collect(),
+        elite1: map.elite0.into_iter().take(`3`).collect(),
+        elite2: map.elite0.into_iter().take(`4`).collect(),
     }
+}
 ",
         {
             index,
-            config["characterExpMap"][[1, 1 ;; e0 - 1]] // asVec,
-            config["characterExpMap"][[2, 1 ;; e1 - 1]] // asVec,
-            config["characterExpMap"][[3, 1 ;; e2 - 1]] // asVec,
-            config["characterUpgradeCostMap"][[1, 1 ;; e0 - 1]] // asVec,
-            config["characterUpgradeCostMap"][[2, 1 ;; e1 - 1]] // asVec,
-            config["characterUpgradeCostMap"][[3, 1 ;; e2 - 1]] // asVec
+            e0 - 1,
+            e1 - 1,
+            e2 - 1
         }
     ]
-]
+];
 
 
 levelUpCostDB = TemplateApply["\
 use super::*;
 
-impl LevelUpCostDB {`1`}
+//noinspection DuplicatedCode
+impl LevelUpCostDB {
+`1`
+`2`
+}
 ",
-    {StringJoin[MapIndexed[f, levels]]}
+    {
+        mapping,
+        StringJoin[MapIndexed[f, levels]]
+    }
 ];
 Export["src/cost/stars.rs", levelUpCostDB, "Text"]
-
-
-mainStory = FileNames["*.json", "data/gamedata/story/", Infinity];
-
-
-file = mainStory[[2]];
-
-
-
-
-
-findMainStageID[file_] := Block[
-    {stageID, story},
-    stageID = StringTrim[FileNameTake[file], "level_" | "_beg.json" | "_end.json" | ".json"];
-    story = Import[file, "RawJSON"];
-    stageID -> <|
-        "chapter" -> story["eventName"],
-        "kind" -> story["entryType"],
-        "name" -> story["storyName"],
-        "code" -> story["storyCode"]
-    |>
-]
-
-
-mainStageID = DeleteDuplicatesBy[ParallelMap[findMainStageID, mainStory], First];
-
-
-Export["src/story_id/data.json", mainStageID]
-
-
-matrix = Import["https://penguin-stats.io/PenguinStats/api/v2/result/matrix", "RawJSON"]
-
-
-data = Normal@Import["data/story_review_table.json", "RawJSON"];
-findStory[story_, chapterName_] := <|
-    "chapter" -> chapterName,
-    "name" -> story["storyName"],
-    "code" -> story["storyCode"]
-|>
-findStories[chapter_] := Block[
-    {chapterName, stories},
-    chapterName = chapter[[-1, "name"]];
-    stories = chapter[[-1, "infoUnlockDatas"]];
-    findStory[#, chapterName]& /@ stories
-]
-findStories /@ data // Flatten
-
-
-selectMatrix[matrix_] := Block[
-    {},
-    matrix
-]
-
-
-matrix["matrix"]
