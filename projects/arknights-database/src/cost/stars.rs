@@ -37,6 +37,7 @@ impl LevelUpCostDB {
                 411, 446, 482, 520, 557, 595, 635, 677, 720, 764, 809, 856, 904, 952, 992, 1042, 1086, 1131, 1178, 1229, 1294,
                 1353, 1413, 1474, 1572,
             ],
+            elite1: 0,
             stage1: vec![
                 48, 71, 95, 120, 146, 173, 201, 231, 262, 293, 326, 361, 396, 432, 470, 508, 548, 589, 631, 675, 719, 765, 811,
                 859, 908, 958, 1010, 1062, 1116, 1171, 1245, 1322, 1400, 1480, 1562, 1645, 1731, 1817, 1906, 1996, 2171, 2349,
@@ -44,6 +45,7 @@ impl LevelUpCostDB {
                 8116, 8378, 8752, 9132, 9518, 9909, 10306, 10709, 11027, 11533, 12224, 12926, 13639, 14363, 15097, 15843,
                 16599, 17367, 18303,
             ],
+            elite2: 0,
             stage2: vec![
                 76, 124, 173, 225, 279, 334, 392, 451, 513, 577, 642, 710, 780, 851, 925, 1001, 1079, 1159, 1240, 1324, 1410,
                 1498, 1588, 1680, 1773, 1869, 1967, 2067, 2169, 2273, 2413, 2556, 2702, 2851, 3003, 3158, 3316, 3477, 3640,
@@ -59,10 +61,10 @@ impl LevelUpCostDB {
         let map = Self::map_exp();
         Self {
             stage0: map.stage0.into_iter().take(29).collect(),
+            stage1: map.stage1.into_iter().take(0).collect(),
+            stage2: map.stage2.into_iter().take(0).collect(),
             elite1: 0,
-            stage1: map.stage0.into_iter().take(0).collect(),
             elite2: 0,
-            stage2: map.stage0.into_iter().take(0).collect(),
         }
     }
 
@@ -71,8 +73,10 @@ impl LevelUpCostDB {
         let map = Self::map_cash();
         Self {
             stage0: map.stage0.into_iter().take(29).collect(),
-            stage1: map.stage0.into_iter().take(0).collect(),
-            stage2: map.stage0.into_iter().take(0).collect(),
+            stage1: map.stage1.into_iter().take(0).collect(),
+            stage2: map.stage2.into_iter().take(0).collect(),
+            elite1: 0,
+            elite2: 0,
         }
     }
 
@@ -81,8 +85,10 @@ impl LevelUpCostDB {
         let map = Self::map_exp();
         Self {
             stage0: map.stage0.into_iter().take(29).collect(),
-            stage1: map.stage0.into_iter().take(0).collect(),
-            stage2: map.stage0.into_iter().take(0).collect(),
+            stage1: map.stage1.into_iter().take(0).collect(),
+            stage2: map.stage2.into_iter().take(0).collect(),
+            elite1: 0,
+            elite2: 0,
         }
     }
 
@@ -91,8 +97,10 @@ impl LevelUpCostDB {
         let map = Self::map_cash();
         Self {
             stage0: map.stage0.into_iter().take(29).collect(),
-            stage1: map.stage0.into_iter().take(0).collect(),
-            stage2: map.stage0.into_iter().take(0).collect(),
+            stage1: map.stage1.into_iter().take(0).collect(),
+            stage2: map.stage2.into_iter().take(0).collect(),
+            elite1: 0,
+            elite2: 0,
         }
     }
 
@@ -101,8 +109,10 @@ impl LevelUpCostDB {
         let map = Self::map_exp();
         Self {
             stage0: map.stage0.into_iter().take(39).collect(),
-            stage1: map.stage0.into_iter().take(54).collect(),
-            stage2: map.stage0.into_iter().take(0).collect(),
+            stage1: map.stage1.into_iter().take(54).collect(),
+            stage2: map.stage2.into_iter().take(0).collect(),
+            elite1: 0,
+            elite2: 0,
         }
     }
 
@@ -111,8 +121,10 @@ impl LevelUpCostDB {
         let map = Self::map_cash();
         Self {
             stage0: map.stage0.into_iter().take(39).collect(),
-            stage1: map.stage0.into_iter().take(54).collect(),
-            stage2: map.stage0.into_iter().take(0).collect(),
+            stage1: map.stage1.into_iter().take(54).collect(),
+            stage2: map.stage2.into_iter().take(0).collect(),
+            elite1: 10000,
+            elite2: 0,
         }
     }
 
@@ -121,8 +133,10 @@ impl LevelUpCostDB {
         let map = Self::map_exp();
         Self {
             stage0: map.stage0.into_iter().take(44).collect(),
-            stage1: map.stage0.into_iter().take(59).collect(),
-            stage2: map.stage0.into_iter().take(69).collect(),
+            stage1: map.stage1.into_iter().take(59).collect(),
+            stage2: map.stage2.into_iter().take(69).collect(),
+            elite1: 0,
+            elite2: 0,
         }
     }
 
@@ -131,8 +145,10 @@ impl LevelUpCostDB {
         let map = Self::map_cash();
         Self {
             stage0: map.stage0.into_iter().take(44).collect(),
-            stage1: map.stage0.into_iter().take(59).collect(),
-            stage2: map.stage0.into_iter().take(69).collect(),
+            stage1: map.stage1.into_iter().take(59).collect(),
+            stage2: map.stage2.into_iter().take(69).collect(),
+            elite1: 15000,
+            elite2: 60000,
         }
     }
 
@@ -141,8 +157,10 @@ impl LevelUpCostDB {
         let map = Self::map_exp();
         Self {
             stage0: map.stage0.into_iter().take(49).collect(),
-            stage1: map.stage0.into_iter().take(69).collect(),
-            stage2: map.stage0.into_iter().take(79).collect(),
+            stage1: map.stage1.into_iter().take(69).collect(),
+            stage2: map.stage2.into_iter().take(79).collect(),
+            elite1: 0,
+            elite2: 0,
         }
     }
 
@@ -151,8 +169,10 @@ impl LevelUpCostDB {
         let map = Self::map_cash();
         Self {
             stage0: map.stage0.into_iter().take(49).collect(),
-            stage1: map.stage0.into_iter().take(69).collect(),
-            stage2: map.stage0.into_iter().take(79).collect(),
+            stage1: map.stage1.into_iter().take(69).collect(),
+            stage2: map.stage2.into_iter().take(79).collect(),
+            elite1: 20000,
+            elite2: 120000,
         }
     }
 
@@ -161,8 +181,10 @@ impl LevelUpCostDB {
         let map = Self::map_exp();
         Self {
             stage0: map.stage0.into_iter().take(49).collect(),
-            stage1: map.stage0.into_iter().take(79).collect(),
-            stage2: map.stage0.into_iter().take(89).collect(),
+            stage1: map.stage1.into_iter().take(79).collect(),
+            stage2: map.stage2.into_iter().take(89).collect(),
+            elite1: 0,
+            elite2: 0,
         }
     }
 
@@ -171,8 +193,10 @@ impl LevelUpCostDB {
         let map = Self::map_cash();
         Self {
             stage0: map.stage0.into_iter().take(49).collect(),
-            stage1: map.stage0.into_iter().take(79).collect(),
-            stage2: map.stage0.into_iter().take(89).collect(),
+            stage1: map.stage1.into_iter().take(79).collect(),
+            stage2: map.stage2.into_iter().take(89).collect(),
+            elite1: 30000,
+            elite2: 180000,
         }
     }
 }

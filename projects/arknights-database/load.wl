@@ -9,21 +9,26 @@ config = Import["data/gamedata_const.json", "RawJSON"];
 levels = PadRight[config["maxLevel"], {6, 3}, 1];
 expMap = config["characterExpMap"] /. {-1 -> Nothing};
 cashMap = config["characterUpgradeCostMap"] /. {-1 -> Nothing};
+goldExtra = config["evolveGoldCost"] /. {-1 -> 0}
 mapping = TemplateApply["\
 #[inline]
 fn map_exp() -> Self {
     Self {
-        elite0: `1`,
-        elite1: `2`,
-        elite2: `3`,
+        stage0: `1`,
+		elite1: 0,
+        stage1: `2`,
+		elite2: 0,
+        stage2: `3`,
     }
 }
 #[inline]
 fn map_cash() -> Self {
     Self {
-        elite0: `4`,
-        elite1: `5`,
-        elite2: `6`,
+        stage0: `4`,
+		elite1: 0,
+        stage1: `5`,
+		elite2: 0,
+        stage2: `6`,
     }
 }
 ",
@@ -39,9 +44,11 @@ f[{e0_, e1_, e2_}, {index_}] := Block[
 pub fn star`1`_exp() -> Self {
     let map = Self::map_exp();
     Self {
-        elite0: map.elite0.into_iter().take(`2`).collect(),
-        elite1: map.elite0.into_iter().take(`3`).collect(),
-        elite2: map.elite0.into_iter().take(`4`).collect(),
+        stage0: map.stage0.into_iter().take(`2`).collect(),
+        stage1: map.stage1.into_iter().take(`3`).collect(),
+        stage2: map.stage2.into_iter().take(`4`).collect(),
+		elite1: 0,
+		elite2: 0,
     }
 }
 
@@ -49,9 +56,11 @@ pub fn star`1`_exp() -> Self {
 pub fn star`1`_cash() -> Self {
     let map = Self::map_cash();
     Self {
-        elite0: map.elite0.into_iter().take(`2`).collect(),
-        elite1: map.elite0.into_iter().take(`3`).collect(),
-        elite2: map.elite0.into_iter().take(`4`).collect(),
+        stage0: map.stage0.into_iter().take(`2`).collect(),
+        stage1: map.stage1.into_iter().take(`3`).collect(),
+        stage2: map.stage2.into_iter().take(`4`).collect(),
+		elite1: `5`,
+		elite2: `6`,
     }
 }
 ",
@@ -59,7 +68,9 @@ pub fn star`1`_cash() -> Self {
             index,
             e0 - 1,
             e1 - 1,
-            e2 - 1
+            e2 - 1,
+            goldExtra[[index, 1]],
+            goldExtra[[index, 2]]
         }
     ]
 ];
