@@ -1,5 +1,6 @@
 mod stars;
 
+/// 计算干员升级所需的所有数据
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct LevelUpCostDB {
     /// 精 0 每升一级需要消耗的资源
@@ -14,14 +15,7 @@ pub struct LevelUpCostDB {
     pub stage2: Vec<usize>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct CharacterEliteNeeded {
-    /// 精 1 消耗的资源
-    pub elite1: Vec<&'static str>,
-    /// 精 2 消耗的资源
-    pub elite2: Vec<&'static str>,
-}
-
+/// 干员升级所需要的资源
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct LevelUpCost {
     /// 精 0 阶段升级需要消耗的资源

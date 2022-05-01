@@ -1,4 +1,4 @@
-use arknights_db::LevelUpCostDB;
+use arknights::LevelUpCostDB;
 
 #[test]
 fn ready() {
