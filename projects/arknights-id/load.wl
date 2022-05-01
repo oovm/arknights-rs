@@ -4,9 +4,7 @@ SetDirectory@NotebookDirectory[]
 
 
 
-
-
-config=Import["data/gamedata_const.json","RawJSON"];
+config=Import["data/stage_index.json","RawJSON"];
 
 
 config["maxLevel"]
